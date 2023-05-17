@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Auth } from "../services/auth";
 
 export const useAuth = () => {
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState<boolean>();
 
     useEffect(() => {
         (async () => {
@@ -15,6 +15,7 @@ export const useAuth = () => {
             console.log(isAuth)
 
         }).catch((reason) => {
+            setIsAuth(false);
             console.log(reason);
         })
     }, []);

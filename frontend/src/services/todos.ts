@@ -4,7 +4,9 @@ import axios from "axios";
 
 export class Todos {
     static getAllTodos: types.getAllTodosFunction = async () => {
-        const response = await axios.get(`${BASE_API_URL}/api/todo/all`);
+        const response = await axios.get(`${BASE_API_URL}/api/todo/all`, {
+            withCredentials: true
+        });
         return response.data;
     }
 };
