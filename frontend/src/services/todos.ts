@@ -8,5 +8,11 @@ export class Todos {
             withCredentials: true
         });
         return response.data;
+    };
+
+    static createTodo = async (todo: {title: string; completed: boolean}) => {
+        await axios.post(`${BASE_API_URL}/api/todo/`, todo, {
+            withCredentials: true
+        })
     }
 };
