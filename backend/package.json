@@ -4,9 +4,6 @@
   "description": "CRUD API for To-Do App",
   "main": "index.js",
   "type": "module",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
