@@ -3,21 +3,25 @@ import morgan from "morgan";
 import allRoutes from "./routes/index.js";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import cors from "cors";
 import "dotenv/config";
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.use((req, res, next) => {
-    res
-        .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-        .header("Access-Control-Allow-Origin", "http://localhost:5173")
-        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE, OPTIONS") 
-        .header("Access-Control-Allow-credentials", true)
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
+// app.use((req, res, next) => {
+//     res
+//         .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+//         .header("Access-Control-Allow-Origin", "http://localhost:5173")
+//         .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE, OPTIONS") 
+//         .header("Access-Control-Allow-credentials", true)
     
-    next();
-});
+//     next();
+// });
 app.use(cookieParser());
 app.use(morgan("tiny"));
 app.use(express.json());
