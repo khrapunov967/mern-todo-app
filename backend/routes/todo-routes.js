@@ -1,8 +1,8 @@
 import express from "express";
-import { getAllTodo } from "../controllers/todo-controllers.js";
+import { getAllTodos } from "../controllers/todo-controllers.js";
 
 const router = express.Router();
 
-router.use("/all", getAllTodo);
+router.get("/all", getAllTodos);
 
 export default router;

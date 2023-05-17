@@ -1,4 +1,16 @@
 
-export const getAllTodo = (req, res) => {
-    return res.status(200).json("ALL TODOS HERE");
-}
+export const getAllTodos = (req, res) => {
+    
+};
+
+export const createTodo = (req, res) => {
+
+};
+
+export const updateTodo = (req, res) => {
+
+};
+
+export const deleteTodo = (req, res) => {
+
+};
