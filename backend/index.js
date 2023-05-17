@@ -14,7 +14,7 @@ app.use((req, res, next) => {
         .header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
         .header("Access-Control-Allow-Origin", "http://localhost:5173")
         .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, UPDATE") 
-        .header("Access-Control-Allow-credentials", true)
+        .header("Access-Control-Allow-credentials", false)
     
     next();
 });
