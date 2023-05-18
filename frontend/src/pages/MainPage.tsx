@@ -30,6 +30,7 @@ const MainPage: React.FC = () => {
                         return (
                             <TodoCard
                                 key={todo._id}
+                                id={todo._id}
                                 title={todo.title}
                                 completed={todo.completed}
                             />
