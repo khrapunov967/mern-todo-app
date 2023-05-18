@@ -13,9 +13,8 @@ const app = express();
 app.use(cors({
     origin: "https://mern-todo-app-client.onrender.com",
     // origin: "http://localhost:5173",
-    credentials: true,
-    preflightContinue: false
-}))
+    credentials: true
+}));
 app.use(cookieParser());
 app.use(morgan("tiny"));
 app.use(express.json());
