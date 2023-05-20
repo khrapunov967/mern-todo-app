@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Auth } from "../services/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { useNotification } from "../hooks/useNotification";
 
 const SignInPage: React.FC = () => {
 
@@ -12,14 +13,26 @@ const SignInPage: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const signIn = async () => {
+    const { errorNotification } = useNotification();
+
+    const signUp = async () => {
         try {
-            await Auth.signIn(user).then(() => {
-                navigate("/")
-            })
+            await Auth.signUp(user)
+                .then(() => {
+                    Auth.signIn({email: user.email, password: user.password})
+                        .then(() => {
+                            navigate("/");
+                        })
+                        .catch(() => {
+                            errorNotification("Something went wrong!");
+                        });
+                })
+                .catch((reason) => {
+                    errorNotification(reason.response.data);
+                });
 
         } catch (error) {
-            console.log(error);
+            errorNotification("Something went wrong!");
         }
     };
 
@@ -59,7 +72,7 @@ const SignInPage: React.FC = () => {
                         className="border-2 border-black bg-[#2c2c2c] rounded-md text-white p-1 bg-black"
                         onClick={(e) => {
                             e.preventDefault();
-                            signIn();
+                            signUp();
                         }}
                     >
                         Sign Up

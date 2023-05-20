@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { ErrorInfo, useState } from "react";
 import { Auth } from "../services/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { useNotification } from "../hooks/useNotification";
 
 const SignInPage: React.FC = () => {
 
@@ -11,14 +12,20 @@ const SignInPage: React.FC = () => {
 
     const navigate = useNavigate();
 
+    const { errorNotification } = useNotification();
+
     const signIn = async () => {
         try {
-            await Auth.signIn(user).then(() => {
-                navigate("/")
-            })
+            await Auth.signIn(user)
+                .then(() => {
+                    navigate("/")
+                })
+                .catch((reason) => {
+                    errorNotification(reason.response.data);
+                })
 
         } catch (error) {
-            console.log(error);
+            errorNotification("Something went wrong");
         }
     };
 

@@ -16,6 +16,12 @@ export class Auth {
         });
     };
 
+    static signUp = async (user: {name: string; email: string; password: string}) => {
+        await axios.post(`${BASE_API_URL}/api/auth/sign-up`, user, {
+            withCredentials: true
+        });
+    };
+
     static logout = async () => {
         await axios.get(`${BASE_API_URL}/api/auth/logout`, {
             withCredentials: true

@@ -13,6 +13,10 @@ export const getAllTodos = async (req, res) => {
 
 export const createTodo = async (req, res) => {
     try {
+        if (!req.body.title.length) {
+            return res.status(500).json("Title is required!");
+        }
+
         const newTodo = new Todo({
             title: req.body.title,
             user: req.user.id,

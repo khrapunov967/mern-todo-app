@@ -35,8 +35,8 @@ const CreateTodoForm: React.FC = () => {
                         errorNotification("Something went wrong. Please, reload the page!")
                     })
             })
-            .catch(() => {
-                errorNotification("Something went wrong!");
+            .catch((reason) => {
+                errorNotification(reason.response.data);
             })
     };
 
