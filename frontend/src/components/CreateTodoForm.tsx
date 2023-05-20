@@ -14,15 +14,13 @@ const CreateTodoForm: React.FC = () => {
 
     const dispatch = useAppDispatch();
 
-    const { successNotification, errorNotification } = useNotification();
+    const { successNotification, errorNotification, warningNotification } = useNotification();
 
     const createTodo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
 
         await Todos.createTodo(todo)
             .then(() => {
-                console.log("Created");
-
                 setTodo({
                     ...todo,
                     title: ""
@@ -33,10 +31,10 @@ const CreateTodoForm: React.FC = () => {
                 dispatch(fetchTodos())
                     .catch(() => {
                         errorNotification("Something went wrong. Please, reload the page!")
-                    })
+                    });
             })
             .catch((reason) => {
-                errorNotification(reason.response.data);
+                warningNotification(reason.response.data);
             })
     };
 

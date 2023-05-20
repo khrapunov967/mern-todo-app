@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors({
-    // origin: "https://mern-todo-app-client.onrender.com",
-    origin: "http://localhost:5173",
+    origin: "https://mern-todo-app-client.onrender.com",
+    // origin: "http://localhost:5173",
     credentials: true
 }));
 app.use(cookieParser());

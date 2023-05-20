@@ -12,11 +12,9 @@ export const useAuth = () => {
         })()
         .then((value) => {
             setIsAuth(value);
-            console.log(isAuth)
 
         }).catch((reason) => {
             setIsAuth(false);
-            console.log(reason);
         })
     }, []);
 

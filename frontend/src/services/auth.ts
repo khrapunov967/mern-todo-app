@@ -7,6 +7,7 @@ export class Auth {
         const response = await axios.get(`${BASE_API_URL}/api/auth/is-logged-in`, {
             withCredentials: true
         });
+        
         return response.data;
     };
 
