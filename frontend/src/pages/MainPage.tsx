@@ -5,10 +5,11 @@ import { fetchTodos } from "../store/slices/todos";
 import Header from "../components/Header";
 import TodoCard from "../components/TodoCard";
 import CreateTodoForm from "../components/CreateTodoForm";
+import Loader from "../components/Loader";
 
 const MainPage: React.FC = () => {
 
-    const todos = useAppSelector(state => state.todos.todos);
+    const { todos, isFetching} = useAppSelector(state => state.todos);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -26,6 +27,8 @@ const MainPage: React.FC = () => {
                 <CreateTodoForm />
                 
                 {
+                    isFetching ? <Loader /> :
+                    !todos.length ? <p className="text-[#2c2c2c]">No todos</p> :
                     todos.map((todo) => {
                         return (
                             <TodoCard

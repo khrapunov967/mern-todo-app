@@ -1,4 +1,5 @@
 import { useAppDispatch } from "../hooks/useAppDispatch";
+import { useNotification } from "../hooks/useNotification";
 import { Todos } from "../services/todos";
 import { fetchTodos } from "../store/slices/todos";
 import { ITodoCard } from "../types/props";
@@ -7,6 +8,7 @@ import { IoMdTrash, IoMdCheckmark, IoMdDoneAll } from "react-icons/io"
 const TodoCard: React.FC<ITodoCard> = ({title, completed, id}) => {
 
     const dispatch = useAppDispatch();
+    const { errorNotification, successNotification } = useNotification();
 
     const updateTodo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
@@ -16,7 +18,7 @@ const TodoCard: React.FC<ITodoCard> = ({title, completed, id}) => {
                 dispatch(fetchTodos());
             })
             .catch((reason) => {
-                console.log(reason)
+                errorNotification("Can't update todo!");
             });
     };
 
@@ -25,16 +27,22 @@ const TodoCard: React.FC<ITodoCard> = ({title, completed, id}) => {
 
         await Todos.deleteTodo(id)
             .then(() => {
-                dispatch(fetchTodos());
+
+                successNotification("Todo was deleted!");
+
+                dispatch(fetchTodos())
+                    .catch(() => {
+                        errorNotification("Something went wrong. Please, reload the page!")
+                    });
             })
-            .catch((reason) => {
-                console.log(reason);
+            .catch(() => {
+                errorNotification("Can't delete todo!");
             });
     };
 
     return (
-        <div className="w-full max-w-[300px] border-2 flex justify-between p-3 rounded-lg">
-            <p className={`font-semibold ${completed ? "line-through" : ""}`}>
+        <div className="w-full bg-yellow-100 border-yellow-200 max-w-[300px] border-2 flex justify-between p-3 rounded-lg gap-1">
+            <p className={`font-semibold overflow-hidden text-ellipsis ${completed ? "line-through" : ""}`}>
                 {title}
             </p>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Auth } from "../services/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignInPage: React.FC = () => {
 
@@ -24,16 +24,16 @@ const SignInPage: React.FC = () => {
 
     return (
         <section className="w-full flex flex-col justify-center items-center h-[100vh]">
-            <div className="p-2 rounded-lg bg-gray-400">
-                <h1 className="font-bold text-2xl text-center mb-4">
+            <div className="p-2 rounded-lg bg-yellow-200 border-2 border-yellow-300">
+                <h1 className="font-bold text-2xl text-center mb-4 text-[#2c2c2c]">
                     Sign In
                 </h1>
 
-                <form className="flex flex-col gap-2">
+                <form className="flex flex-col gap-2 bg-transparent">
                     <input 
                         type="email" 
                         placeholder="Email"
-                        className="outline-none border-2 border-black p-1 rounded-md"
+                        className="text-[#2c2c2c] outline-none border-2 border-black p-1 rounded-md"
                         value={user.email}
                         onChange={(e) => setUser({...user, email: e.target.value})} 
                     />
@@ -41,13 +41,13 @@ const SignInPage: React.FC = () => {
                     <input 
                         type="password" 
                         placeholder="Password"
-                        className="outline-none border-2 border-black p-1 rounded-md"
+                        className="text-[#2c2c2c] outline-none border-2 border-black p-1 rounded-md"
                         value={user.password}
                         onChange={(e) => setUser({...user, password: e.target.value})} 
                     />
 
                     <button
-                        className="border-2 border-black rounded-md text-white p-1 bg-black"
+                        className="border-2 border-black bg-[#2c2c2c] rounded-md text-white p-1 bg-black"
                         onClick={(e) => {
                             e.preventDefault();
                             signIn();
@@ -55,6 +55,19 @@ const SignInPage: React.FC = () => {
                     >
                         Sign In
                     </button>
+
+                    <div className="flex items-center w-full justify-center gap-2">
+                        <p className="text-sm">
+                            Don't have an account?
+                        </p>
+
+                        <Link 
+                            to={"/sign-up"}
+                            className="text-sm text-blue-800 underline"
+                        >
+                            Sign Up
+                        </Link>
+                    </div>
                 </form>
             </div>
         </section>

@@ -25,20 +25,20 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <header className="w-full border-2 p-3 flex justify-between items-center">
+        <header className="w-full mb-6 p-3 flex justify-between items-center">
             <div>
-                <p className="font-bold text-3xl">
+                <p className="font-bold text-3xl text-[#2c2c2c]">
                     Todo App
                 </p>
             </div>
 
             <div className="flex items-center gap-2">
-                <p>
+                <p className="text-lg font-semibold text-[#2c2c2c]">
                     {user.email}
                 </p>
 
                 <button
-                    className="border-2 p-1 rounded-lg"
+                    className="py-1 border-2 px-4 rounded-lg bg-red-400 border-red-500 text-white transition-colors duration-200 hover:bg-red-500"
                     onClick={logout}
                 >
                     Logout
