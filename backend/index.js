@@ -13,7 +13,8 @@ const app = express();
 app.use(cors({
     origin: "https://mern-todo-app-client.onrender.com",
     // origin: "http://localhost:5173",
-    credentials: true
+    credentials: true,
+    allowedHeaders: "GET,POST,PUT,DELETE,PATCH,OPTIONS,Origin,X-Requested-With,Content-Type,Accept,Authorization"
 }));
 app.use(cookieParser());
 app.use(morgan("tiny"));
