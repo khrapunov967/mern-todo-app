@@ -11,13 +11,13 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors({
-    origin: "https://mern-todo-app-client.onrender.com",
+    origin: "https://sage-ganache-d3483d.netlify.app",
     // origin: "http://localhost:5173",
     credentials: true,
     allowedHeaders: "GET,POST,PUT,DELETE,PATCH,OPTIONS,Origin,X-Requested-With,Content-Type,Accept,Authorization"
 }));
 app.options("*", cors({
-    origin: "https://mern-todo-app-client.onrender.com",
+    origin: "https://sage-ganache-d3483d.netlify.app",
     // origin: "http://localhost:5173",
     credentials: true,
     allowedHeaders: "GET,POST,PUT,DELETE,PATCH,OPTIONS,Origin,X-Requested-With,Content-Type,Accept,Authorization"
