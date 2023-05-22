@@ -3,7 +3,7 @@
 
 ## Stack
 ### Frontend: React.js / React Router DOM / Vite / TypeScript / Redux Toolkit / Tailwind Css
-### Backend: Express.js / MongoDB
+### Backend: Express.js / JWT / MongoDB
 
 ## Screens
 ### Sign In Page (Sign Up Page is almost similar)
