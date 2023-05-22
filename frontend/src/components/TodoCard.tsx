@@ -41,8 +41,8 @@ const TodoCard: React.FC<ITodoCard> = ({title, completed, id}) => {
     };
 
     return (
-        <div className="w-full bg-yellow-100 border-yellow-200 max-w-[300px] border-2 flex justify-between p-3 rounded-lg gap-1">
-            <p className={`font-semibold overflow-hidden text-ellipsis ${completed ? "line-through" : ""}`}>
+        <div className="w-full bg-[#fff6bd] max-w-[474px] md:max-w-[90%] flex justify-between p-3 rounded-lg gap-1">
+            <p className={`font-semibold text-[#353839] overflow-hidden text-ellipsis ${completed ? "line-through" : ""}`}>
                 {title}
             </p>
 

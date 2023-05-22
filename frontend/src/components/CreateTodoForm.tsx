@@ -39,10 +39,10 @@ const CreateTodoForm: React.FC = () => {
     };
 
     return (
-        <div className="w-fit border-2 p-2 bg-yellow-100 border-yellow-200 flex gap-3 rounded-lg mb-6">
+        <div className="w-full max-w-[474px] md:max-w-[90%] border-2 p-2 bg-inherit border-[#c5bbe4] flex gap-3 rounded-lg mb-6">
             <div className="flex">
                 <input 
-                    className="text-lg outline-none text-[#2c2c2c] bg-transparent"
+                    className="text-lg outline-none text-[#353839] bg-transparent w-full"
                     type="text"  
                     placeholder="Title"
                     value={todo.title}
@@ -56,12 +56,13 @@ const CreateTodoForm: React.FC = () => {
                 >
                     <IoMdClose
                         size={"20px"}
+                        color="#353839"
                     />
                 </button>
             </div>
 
             <button
-                className="text-lg bg-green-500 text-white p-1 rounded-lg border-2 border-green-600 transition-colors duration-200 hover:bg-green-600"
+                className="text-lg bg-inherit text-[#ceedc7] p-1 rounded-lg border-2 border-[#ceedc7] transition-colors duration-200 hover:bg-[#ceedc7] hover:text-white"
                 onClick={createTodo}
             >
                 Create

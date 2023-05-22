@@ -13,7 +13,7 @@ export const useNotification = () => {
         style: {
             backgroundColor: "#fefefe", 
             boxShadow: "2px 7px 5px rgba(0, 0, 0, 0.2)",
-            border: "solid 2px #f1f1f1",
+            border: "solid 2px #c5bbe4",
             zIndex: "15"
         }
     };

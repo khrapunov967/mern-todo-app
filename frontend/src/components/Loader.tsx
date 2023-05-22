@@ -2,7 +2,7 @@
 const Loader: React.FC = () => {
     return (
         <div
-            className="w-[20px] h-[20px] animate-spin rounded-full border-[4px] border-[#2c2c2c] border-t-stone-300"
+            className="w-[25px] h-[25px] animate-spin rounded-full border-[5px] border-[#2c2c2c] border-t-stone-300"
         />
     );
 };

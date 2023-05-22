@@ -27,18 +27,18 @@ const Header: React.FC = () => {
     return (
         <header className="w-full mb-6 p-3 flex justify-between items-center">
             <div>
-                <p className="font-bold text-3xl text-[#2c2c2c]">
+                <p className="font-bold text-3xl text-[#353839]">
                     Todo App
                 </p>
             </div>
 
             <div className="flex items-center gap-2">
-                <p className="text-lg font-semibold text-[#2c2c2c]">
+                <p className="text-lg font-semibold text-[#353839] md:hidden">
                     {user.email}
                 </p>
 
                 <button
-                    className="py-1 border-2 px-4 rounded-lg bg-red-400 border-red-500 text-white transition-colors duration-200 hover:bg-red-500"
+                    className="py-1 border-2 px-4 rounded-lg bg-inherit border-[#ff9494] text-[#ff9494] transition-colors duration-200 hover:bg-[#ff9494] hover:text-white"
                     onClick={logout}
                 >
                     Logout
