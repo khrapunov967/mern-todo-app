@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Auth } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { fetchUserInfo } from "../store/slices/user";
+import { useNotification } from "../hooks/useNotification";
 
 const Header: React.FC = () => {
 
@@ -12,12 +13,33 @@ const Header: React.FC = () => {
     const user = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
+    const [isLogoutProcessing, setIsLogoutProcessing] = useState(false);
+
+    const { errorNotification } = useNotification();
+
     const logout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
 
-        Auth.logout().then(() => {
-            navigate("/sign-in");
-        });
+        try {
+            setIsLogoutProcessing(false);
+
+            Auth.logout()
+                .then(() => {
+                    navigate("/sign-in");
+                })
+                .catch((reason) => {
+                    errorNotification(reason.response.data)
+                })
+                .finally(() => {
+                    setIsLogoutProcessing(false)
+                })
+
+        } catch (error) {
+            errorNotification("Something went wrong. Please try again!");
+        
+        } finally {
+            setIsLogoutProcessing(false);
+        }
     };
 
     useEffect(() => {
@@ -41,7 +63,13 @@ const Header: React.FC = () => {
                     className="py-1 border-2 px-4 rounded-lg bg-inherit border-[#ff9494] text-[#ff9494] transition-colors duration-200 hover:bg-[#ff9494] hover:text-white"
                     onClick={logout}
                 >
-                    Logout
+                    {
+                        !isLogoutProcessing ? 
+                        "Logout" : 
+                        <div className="w-[54.25px] h-[24px] flex justify-center items-center">
+                            <div className="w-[15px] h-[15px] border-[4px] rounded-full border-[#ff9494] border-t-white animate-spin" />
+                        </div>
+                    }
                 </button>
             </div>
         </header>

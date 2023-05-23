@@ -12,6 +12,8 @@ const CreateTodoForm: React.FC = () => {
         completed: false
     });
 
+    const [isTodoCreating, setIsTodoCreating] = useState(false);
+
     const dispatch = useAppDispatch();
 
     const { successNotification, errorNotification, warningNotification } = useNotification();
@@ -19,23 +21,37 @@ const CreateTodoForm: React.FC = () => {
     const createTodo = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
 
-        await Todos.createTodo(todo)
-            .then(() => {
-                setTodo({
-                    ...todo,
-                    title: ""
-                });
+        try {
+            setIsTodoCreating(true);
 
-                successNotification("New Todo Was Created!");
-
-                dispatch(fetchTodos())
-                    .catch(() => {
-                        errorNotification("Something went wrong. Please, reload the page!")
+            await Todos.createTodo(todo)
+                .then(() => {
+                    setTodo({
+                        ...todo,
+                        title: ""
                     });
-            })
-            .catch((reason) => {
-                warningNotification(reason.response.data);
-            })
+
+                    successNotification("New Todo Was Created!");
+
+                    dispatch(fetchTodos())
+                        .catch(() => {
+                            errorNotification("Something went wrong. Please, reload the page!")
+                        });
+                })
+                .catch((reason) => {
+                    warningNotification(reason.response.data);
+
+                })
+                .finally(() => {
+                    setIsTodoCreating(false);
+                })
+
+        } catch (error) {
+            errorNotification("Something went wrong. Please try again!")
+        
+        } finally {
+            setIsTodoCreating(false)
+        }
     };
 
     return (
@@ -65,7 +81,13 @@ const CreateTodoForm: React.FC = () => {
                 className="text-lg bg-inherit text-[#ceedc7] p-1 rounded-lg border-2 border-[#ceedc7] transition-colors duration-200 hover:bg-[#ceedc7] hover:text-white"
                 onClick={createTodo}
             >
-                Create
+                {
+                        !isTodoCreating ? 
+                        "Create" :
+                        <div className="w-[62px] h-[28px] flex justify-center items-center">
+                            <div className="w-[15px] h-[15px] border-[4px] rounded-full border-[#ceedc7] border-t-white animate-spin" />
+                        </div>
+                    }
             </button>
         </div>
     );
